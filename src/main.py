@@ -37,11 +37,11 @@ if __name__ == "__main__":
         help="Mass of the particle."
     )
     parser.add_argument(
-        "--positions", type=float, default=[2.0], 
+        "--positions", type=float, default=1.50, 
         help="Initial position(s) of the particle(s)."
     )
     parser.add_argument(
-        "--velocities", type=float, default=[4.0], 
+        "--velocities", type=float, default=0.20, 
         help="Initial velocity(ies) of the particle(s)."
     )
 
@@ -63,7 +63,7 @@ if __name__ == "__main__":
         help="Time step for the integration (in arbitrary units)."
     )
     parser.add_argument(
-        "--print_freq", type=int, default=100, 
+        "--print_freq", type=int, default=10, 
         help="Frequency at which results are logged."
     )
 
@@ -84,6 +84,14 @@ if __name__ == "__main__":
         "--seed", type=int, default=42, 
         help="Random seed for reproducibility (used in Langevin dynamics)."
     )
+
+    parser.add_argument(
+        "--animation", action="store_true",
+        help="Flag to enable animation of the simulation.")
+    
+    parser.add_argument(
+        "--save_file", type=str, default=None,
+        help="Path to save the animation as a video file.")
 
     # Parse arguments
     args = parser.parse_args()

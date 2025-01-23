@@ -1,7 +1,7 @@
 from system import System
 from potentials_and_forces import Harmonic, DoubleWell
 from integrators import VVIntegrator, LangevinIntegrator
-from utils import compute_energies
+from utils import compute_energies, animate
 
 import numpy as np
 import pandas as pd
@@ -41,8 +41,8 @@ def run_md(args):
     # Initialize the system with the specified mass and potential
     system = System(args.mass, potential)
     system.initialize(
-        np.array(args.positions, dtype=np.float64), 
-        np.array(args.velocities, dtype=np.float64)
+        np.array([args.positions], dtype=np.float64), 
+        np.array([args.velocities], dtype=np.float64)
     )
 
     # Initialize the appropriate integrator based on simulation type
@@ -63,18 +63,12 @@ def run_md(args):
             if i % args.print_freq == 0:
                 compute_energies(system, i, log_file=file)
 
+    if args.animation:
+        # read the output file and animate the results
+        df = pd.read_csv("output.log", sep=", ", header=None)
+        data = np.array(df, dtype=np.float64)
+        n_steps = len(data)
+        potential_energies, kinetic_energies, total_energies = data[:, 1], data[:, 2], data[:, 3]
+        positions = data[:, 4]
 
-    # read the output file and plot the positions and velocities
-    
-    df = pd.read_csv("output.log", sep=", ", header=None)
-    #data = np.loadtxt("output.txt", delimiter=",")
-    data = np.array(df, dtype=np.float64)
-    print(data.ndim, len(data), data.shape)
-    
-    #plt.plot(data[:, 0], data[:, 1], label = "Position")
-    #plt.plot(data[:, 0], data[:, 2], label = "Velocity")
-    plt.plot(data[:, 0], data[:, 1], label = "Potential Energy")
-    plt.plot(data[:, 0], data[:, 2], label = "Kinetic Energy")
-    plt.plot(data[:, 0], data[:, 3], label = "Total Energy")
-    plt.legend()
-    plt.show()
+        animate(n_steps, potential_energies, kinetic_energies, total_energies, potential.potential, positions, args.dt*args.print_freq, save_file=args.save_file)
