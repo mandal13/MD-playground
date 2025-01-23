@@ -65,7 +65,7 @@ def run_md(args):
 
     if args.animation:
         # read the output file and animate the results
-        df = pd.read_csv("output.log", sep=", ", header=None)
+        df = pd.read_csv(args.output, sep=",", header=None)
         data = np.array(df, dtype=np.float64)
         n_steps = len(data)
         potential_energies, kinetic_energies, total_energies = data[:, 1], data[:, 2], data[:, 3]
