@@ -2,16 +2,19 @@
 
 ## About
 MD-playground is a Python-based molecular dynamics (MD) simulation engine designed for simplicity and extensibility. The engine is capable of simulating:
-- Single particles in harmonic or double-well potentials.
-- Systems of particles interacting via Lennard-Jones or other potentials.
-- Enhanced sampling techniques using Metadynamics.
+- Simulations of single particles in various potentials.
+- Dynamics in both NVE (microcanonical) and NVT (canonical) ensembles.
+- Advanced enhanced sampling techniques like Metadynamics.
 
-## Features
-- **Integrators**: Velocity Verlet.
-- **Thermostats**: Optional control of temperature.
-- **Potentials**: Harmonic, double-well, Lennard-Jones, and more.
-- **Enhanced Sampling**: Metadynamics.
-- **1D, 2D, 3D Simulations**: Flexibility to handle systems in different dimensions.
+## Key Features
+- **Integrators**: 
+  - Velocity Verlet for time integration.
+- **Thermostats**: 
+  - Optional temperature control for NVT ensemble.
+- **Potentials**: 
+  - Predefined potentials, including Harmonic and Double-Well.
+- **Enhanced Sampling**: 
+  - Metadynamics to accelerate rare event sampling.
 
 ## Getting Started
 ### Installation
