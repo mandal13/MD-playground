@@ -22,4 +22,14 @@ Clone the repository:
 ```bash
 git clone https://github.com/mandal13/MD-playground.git
 cd MD-playground
+```
+
+### Example Simulation
+Run the simulation with:
+```bash
+python main.py --animation --potential double_well --positions 1.75 --save_file animation.mp4
+ffmpeg -i animation.mp4 -vf "fps=30,scale=640:-1:flags=lanczos" animation.gif
+```
+
+<img src="./animations/animation.gif"/>
 
