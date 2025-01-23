@@ -75,7 +75,7 @@ class DoubleWell:
         d (float): Constant offset.
     """
 
-    def __init__(self, a: float = 1.0, b: float = 1.0, c: float = 0.5, d: float = 0.0):
+    def __init__(self, a: float = 1.0, b: float = 3.0, c: float = 0.5, d: float = 3.0):
         """
         Initializes the double-well potential.
 
@@ -137,7 +137,8 @@ if __name__ == "__main__":
     b = 3.0
     c = 0.3
     d = 0.0
-    doublewell = DoubleWell(a=a, b=b, c=c, d=d)
+    #doublewell = DoubleWell(a=a, b=b, c=c, d=d)
+    doublewell = DoubleWell()
 
     x = np.linspace(-2, 2, 500)
     y_doublewell = doublewell.potential(x)
